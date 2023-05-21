@@ -1,0 +1,8 @@
+-- select city,count(distinct department),count(employee_id) from employees group by city having count(department)>0
+
+-- select city,department,count(employee_id) from employees group by city,department 
+-- select department,avg(salary) from employees group by department
+-- select department,count(employee_id) from employees where timestampdiff(year,hire_date,curdate())>8 group by department
+-- select designation,sum(salary) from employees group by designation order by sum(salary) desc
+-- select count(*) as Number_of_Employees from employees
+-- select city,department,round(avg(salary),2) as Average_Salary from employees group by city,department having avg(salary)>70000

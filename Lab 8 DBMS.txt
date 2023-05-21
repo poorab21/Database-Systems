@@ -1,0 +1,11 @@
+-- Task 1
+-- select concat(first_name," ",last_name) as name,designation,salary from employee where salary >= ALL (select salary from employee);
+
+-- Task 2
+-- select concat(first_name," ",last_name) as name,timestampdiff(year,hire_date,curdate()) as Experience from employee where timestampdiff(year,hire_date,curdate()) = (select max(timestampdiff(year,hire_date,curdate())) from employee);                               
+
+-- Task 3
+-- select concat(first_name," ",last_name) as name,salary from employee e1 where salary > (select avg(salary) from employee e2 where e2.Company=e1.Company);
+
+-- Task 4
+-- select * from employee e1 where e1.salary = (select max(salary) from employee e2 group by department having e1.department=e2.department);

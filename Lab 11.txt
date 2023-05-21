@@ -1,0 +1,17 @@
+-- Task 1
+
+-- DELIMITER $$
+-- create trigger employee_trigger before delete on employee 
+-- for each row
+-- begin
+-- insert into log(username,Employee_ID,Employee_Name,TimeStamp) values(user(),old.id,concat(old.fname," ",old.lname),now());
+-- end $$ 
+-- DELIMITER ;
+
+-- delete from employee where id=2;
+-- delete from employee where id=3;
+
+-- select * from log;
+
+-- Task 2
+-- select concat(fname," ",lname) as name,if(designation is null,"No designation yet",designation) as Designation from employee;

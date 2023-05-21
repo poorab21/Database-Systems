@@ -1,0 +1,81 @@
+-- Task 1
+-- 1)
+-- DELIMITER $$
+-- create procedure pass_or_fail()
+-- begin
+-- select temp.dname,Passed_Students,Failed_Students from
+-- (select dname,count(*) as Passed_Students from (select d1.dname,concat(s1.fname," ",s1.lname) as student,s1.gpa as gpa
+--  from student s1 left join department d1 on d1.did=s1.did where gpa<2.50)temp group by dname)temp
+-- left join
+-- (select dname,count(*) as Failed_Students from (select d1.dname,concat(s1.fname," ",s1.lname) as student,s1.gpa as gpa
+--  from student s1 left join department d1 on d1.did=s1.did where gpa>=2.50)temp group by dname)temp2
+-- on temp.dname=temp2.dname;
+-- end$$
+-- delimiter ;
+-- call pass_or_fail;
+
+-- 2)
+-- delimiter $$
+-- create procedure Update_Salary(in Emp_Name TEXT)
+-- begin
+-- declare Old_Salary int(100) default (select salary from employee where concat(fname," ",lname)=Emp_Name);
+-- update employee set salary=salary*1.25 where concat(fname," ",lname)=Emp_Name;
+-- select Old_Salary,(select salary from employee where concat(fname," ",lname)=Emp_Name) as Updated_Salary;
+-- end$$
+-- delimiter ;
+-- call Update_Salary("chane truscott");
+
+-- Task 2
+-- 1)
+
+-- delimiter $$
+-- create procedure Student_Result(in stud_name TEXT)
+-- begin
+-- declare stud_gpa float(3,2) default (select gpa from student where concat(fname," ",lname)=stud_name);
+-- if stud_gpa >= 2.50 then
+-- select stud_name as student,"Passed" as Status;
+-- elseif stud_gpa < 2.50 then
+-- select stud_name as student,"Failed" as Status;
+-- end if;
+-- end$$
+-- delimiter ;
+
+-- call Student_Result("olaf kulas");
+
+-- 2)
+-- delimiter $$
+-- create procedure Student_Result2(in stud_name TEXT)
+-- begin
+-- declare gpa float(3,2) default (select gpa from student where concat(fname," ",lname)=stud_name);
+-- select stud_name as Student,(case 
+-- 	when gpa>=2.5 then 'Passed'
+-- 	when gpa<2.5 then 'Failed'
+-- 	else 'Invalid Value'
+-- end) as Status;
+-- end$$
+-- delimiter ;
+-- call Student_Result2("lela bailey");
+
+-- Task 3
+-- delimiter $$
+-- create procedure pass_or_fail_loop()
+-- begin
+-- 		declare i int(100) default 0;
+--         declare string_value TEXT default (select concat(fname," ",lname) from employee limit i,1);
+--         declare Salary_Temp int(3) default 0;
+--         while string_value is not null
+--         do
+--         set Salary_Temp = (select salary from employee where concat(fname," ",lname)=string_value);
+--         if Salary_Temp >= 80000 then
+--         update stud_temp set status="Passed" where Name=string_value;
+--         elseif Salary_Temp < 80000 then
+--         update stud_temp set status="Failed" where Name=string_value;
+--         end if;
+--         set i=i+1;
+--         set string_value = (select concat(fname," ",lname) from employee limit i,1);
+--         end while;
+-- end $$
+-- delimiter ; 
+
+-- call pass_or_fail_loop;
+

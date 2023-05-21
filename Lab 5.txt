@@ -1,0 +1,19 @@
+-- Task 1
+-- select department.deptName,count(employeeID) from employee join department on employee.deptID=department.deptID group by department.deptID;
+-- select department.deptName,min(employee.salary) from employee join department on employee.deptID=department.deptID group by department.deptID; 
+
+-- Task 2
+-- select employee.employeeID,concat(employee.firstName," ",employee.lastName) as fullname,job.jobTitle as designation,employee.salary as salary from employee join department join job on employee.deptID=department.deptID and employee.jobID=job.jobID group by employee.salary having employee.salary >= ALL (select salary from employee);
+
+-- Task 3
+-- select job.jobTitle,concat(firstname," ",lastname) as name from job left join employee on job.jobID=employee.jobID;
+
+-- Task 4
+-- select location.country,count(department.deptID) from location left join department on location.locationID=department.locationID group by country having count(department.deptID)=max(department.deptID);
+
+-- Task 5
+-- select concat(employee.firstname," ",employee.lastname) as name,location.city from employee join department join location on employee.deptID=department.deptID and department.locationID=location.locationID;
+-- select department.deptName,location.city from department left join location on department.locationID=location.locationID;
+
+-- Task 6
+-- select department.deptName,concat(employee.firstName," ",employee.lastName) as Employee_Name from department left join employee on department.deptID=employee.deptID;

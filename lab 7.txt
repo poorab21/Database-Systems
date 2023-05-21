@@ -1,0 +1,49 @@
+-- Task 1
+-- create view studentview as (select concat(first_name," ",last_name) as fullname,department,gpa from student);
+-- describe studentview;
+
+-- select * from studentview where gpa>3.0;
+
+-- insert into student(stud_id,first_name,last_name,department,gpa) values(4,"Johnny","Nitro","ME",2.1);
+-- select * from student;
+
+-- select * from studentview;
+-- select * from student;
+
+-- Task 2
+-- alter view studentview as (select first_name,departmentID from student where departmentID=2) with check option;
+
+-- select * from studentview;
+
+-- insert into student(stud_id,first_name,last_name,department,gpa,departmentID) values(5,"Arwin","Walker","EE",2.98,1);
+
+-- select * from student;
+-- select * from studentview;
+
+-- drop view studentview;
+
+-- Task 3
+-- create view studentview as (select roll_Number,first_Name,last_name from student);
+-- select * from studentview;
+
+-- insert into studentview(roll_Number,first_Name,last_Name) values("CS981","Joey","Ginger");
+
+-- select * from studentview;
+-- select * from student;
+
+-- delete from studentview where roll_Number="CS123";
+
+-- select * from student;
+-- select * from studentview;
+
+-- alter view studentview as (select roll_Number,first_Name,last_Name from student where first_Name like "%AE%");
+
+-- insert into studentview(roll_Number,first_Name,last_Name) values("CS177","Michael","Leigh");
+
+-- select * from student;
+-- select * from studentview;
+
+-- insert into studentview(roll_Number,first_Name,last_Name) values("CS861","Aldina","Jenkins");
+
+-- select * from studentview;
+-- select * from student;

@@ -1,0 +1,14 @@
+-- create table Employees(employee_id int(4),first_name varchar(20),last_name varchar(20),designation varchar(20),salary float(9,3),birth_date date,hire_date date,department varchar(20),city varchar(20));
+-- insert into Employees(employee_id,first_name,last_name,designation,salary,birth_date,hire_date,department,city) values(122,"Johnny","Walker","Consultant",12000,"1980-3-20","2005-12-19","Finance","Karachi"),(34,"Ajay","Varma","Lawyer",112450,"1977-4-10","2002-11-10","Legal","Lahore"),(209,"aditya","sharma","auditor",23000,"1982-2-14","2008-10-9","Finance","Quetta"),(98,"rohan","sharma","Manager",49000,"1990-5-21","2018-3-13","Finance","Karachi"),(189,"vardhan","singh","auditor",42800,"1997-8-19","2019-11-29","Finance","Hyderabad"),(12,"Bruce","McLaren","Computer Engineer",55000,"1976-2-11","2000-11-13","IT","Karachi"),(67,"Sunny","Mehra","Consultant",22000,"1983-5-26","2007-4-9","Finance","Larkana"),(201,"Shyam","Kumar","auditor",40100,"1993-7-28","2019-9-9","Finance","Karachi");
+-- describe Employees
+-- select concat(first_name," ",last_name) as name,designation,department from employees
+-- select concat(first_name," ",last_name) as name,salary,hire_date from employees order by hire_date desc
+-- select distinct department from employees
+-- select * from employees where salary<40000 and hire_date like "2018%"
+-- select distinct city from employees where city like "%i%" or city like "%r%
+
+-- select department from employees where hire_date between "2016-2-28" and "2018-10-1" order by hire_date desc
+--  select * from employees e1 where exists (select hire_date from employees e2 where e2.hire_date=e1.hire_date group by hire_date having count(hire_date)>1) order by salary asc
+
+-- select * from employees where designation="manager" and city="lahore"
+-- select concat(first_name," ",last_name) as name,salary,((salary/100)*120) as bonus,((salary/100)*120) as NewSalary from employees where designation="auditor" or designation="manager"

@@ -1,0 +1,14 @@
+-- Task 2
+-- create temporary table temp(id int(3),designation TEXT,department_name TEXT); 
+-- insert into temp (select * from (select f1.id as id,f1.designation as name,d1.dname as department_name from faculty f1 left join dept d1 on f1.did=d1.did where f1.designation="assistant professor" or f1.designation="associate professor") temp_tb);
+-- select * from temp;
+
+-- Task 3
+-- alter table student add overloaded enum("Y","N");
+-- update student set overloaded="Y" where sid in (select sid from studentcourses group by sid having count(cid)>3);
+-- update student set overloaded="N" where sid in (select sid from studentcourses group by sid having count(cid)<=3);
+-- select * from student;
+
+-- Task 4
+-- delete from dept where did in (select * from (select d1.did  from dept d1 left join student s1 on s1.did=d1.did group by d1.did having count(s1.sid)<5) temp_tb);
+-- select * from dept;

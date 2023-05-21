@@ -1,0 +1,21 @@
+-- Task 1
+-- select min(avg_salary) from (select dept.dname as department_name,avg(employee.salary) as avg_salary from employee left join dept on employee.did=dept.did group by dept.did) temp;
+
+-- Task 2 
+-- select dept.dname,((sum(employee.salary)/(select sum(salary) from employee))*100) as Total_Salary_Expense_Percentage from employee left join dept on employee.did=dept.did group by dept.dname;
+
+-- Task 3
+-- create table lowsalary(Name TEXT,designation TEXT,Salary float(8,2),department TEXT);
+
+-- insert into lowsalary
+-- (select concat(employee.fname," ",employee.lname) as Name,designation,salary,dept.dname from employee left join dept on employee.did=dept.did where salary<60000);
+
+-- select * from lowsalary;
+
+-- Task 4
+-- select dname as department from (select dept.dname,avg(employee.salary) as Average_Salary from employee left join dept on employee.did=dept.did group by dept.dname having avg(employee.salary) > (select avg(salary) from employee)) temp;
+ 
+
+-- Task 5
+-- select max(dname) from (select dept.dname,avg(employee.salary) as Average_Salary from employee left join dept on employee.did=dept.did group by dept.dname having avg(employee.salary) < (select avg(salary) from employee)) temp;
+

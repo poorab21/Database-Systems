@@ -1,0 +1,59 @@
+-- Task 1
+-- create table employee(employeeID int(6),firstName varchar(20),lastName varchar(20),hiringDate date,deptID int(6),jobID int(6));
+-- create table department(deptID int(6),deptName varchar(20),locationID int(6));
+-- create table job(jobID int(6),jobTitle varchar(20),salary float(9,3));
+-- create table location(locationID int(6),city varchar(20),country varchar(20));
+-- alter table employee modify employeeID int(6) primary key;
+-- alter table department modify deptID int(6) primary key;
+-- alter table job modify jobID varchar(20) primary key;
+-- alter table location modify locationID int(6) primary key;
+-- alter table employee add foreign key (deptID) references department(deptID);
+-- alter table employee add foreign key (jobID) references job(jobID);
+-- alter table department add foreign key (locationID) references location(locationID);
+-- describe location;
+-- describe employee;
+-- describe job;
+-- describe department;
+
+-- Task 2
+-- alter table employee modify employeeID int(6) auto_increment;
+-- alter table employee auto_increment=100;
+-- describe employee;
+
+-- alter table department modify deptID int(6) auto_increment;
+-- describe department;
+
+-- alter table location modify locationID int(10) auto_increment;
+-- alter table location auto_increment=1000000000;
+-- describe location
+
+-- Task 3
+-- alter table location alter city set default "Karachi",alter country set default "Pakistan";
+-- describe location;
+
+-- Task 4
+-- insert into location(city,country) values("Lahore","Pakistan"),("Hyderabad","Pakistan"),("Larkana","Pakistan"),("Quetta","Pakistan");
+-- select * from location;
+
+-- insert into job(jobID,jobTitle,salary) values("ENG101","Engineer",1900),("MAN181","Manager",1850),("DOC292","Doctor",2900),("ENG811","Engineer",1091);
+-- insert into job(jobID,jobTitle,salary) values("IT194","Computerist",2980);
+-- select * from job;
+
+-- insert into department(deptName,locationID) values("Engineering",1000000000),("Medical",1000000002),("Finance",1000000001),("IT",1000000003);
+-- select * from department;
+
+-- insert into employee(firstName,lastName,hiringDate,deptID,jobID) values("Johnny","Patel","2000-12-5",1,"ENG811"),("Ronny","Singh","1989-1-12",null,"DOC292"),("Rahul","Singhania","1998-7-2",3,"MAN181"),("Ajay","Sharma","2000-11-15",2,"DOC292");
+-- select * from employee
+
+-- task 5
+-- alter table employee modify firstName varchar(20) not null,modify lastName varchar(20) not null;
+-- alter table department modify deptName varchar(20) not null;
+-- alter table job modify jobTitle varchar(20) not null; 
+-- describe employee;
+-- describe department;
+-- describe job;
+
+-- Task 6
+-- alter table department add foreign key (locationID) references location(locationID) on delete set null;
+-- delete from location where locationID="1000000000";
+-- select * from department;

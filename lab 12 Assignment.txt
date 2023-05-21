@@ -1,0 +1,84 @@
+-- Task 1
+-- delimiter $$
+-- create procedure Lowest_Paid()
+-- begin
+-- select concat(first_name," ",last_name) as Employee_Name,salary,designation from employee 
+-- where salary is not null order by salary asc limit 0,1;
+-- end $$
+-- delimiter ;
+-- call Lowest_Paid;
+
+-- select * from (select * from employee order by salary desc )temp limit 0,1;
+
+-- Task 2
+-- delimiter $$
+-- create procedure Salary_Less_Than(in input int(3))
+-- begin
+-- select * from employee where salary<input;
+-- end $$
+-- delimiter ;
+
+-- call Salary_Less_Than(2000);
+
+-- Task 3
+-- delimiter $$
+-- create procedure Minimum_Average(out Minimumvalue int(100))
+-- begin
+-- set Minimumvalue = (select min(Average_Salary) from (select department,avg(salary) as Average_Salary from employee group by department)temp);
+-- end $$
+-- delimiter ;
+
+-- set @input=0;
+-- call Minimum_Average(@input);
+-- select @input as Minimum_Average_Salary;
+
+-- Task 4
+-- delimiter $$
+-- create procedure bonus_percentage(in empID int(3))
+-- begin
+-- declare empSalary int(100) default (select salary from employee where employee_id=empID);
+-- declare MaxSalary int(100) default (select max(salary) from employee);
+-- 	if empSalary > (MaxSalary*0.60) then
+-- 		select "10% Bonus" as bonus_Percentage;
+-- 	elseif empSalary > (MaxSalary*0.40) and empSalary <= (MaxSalary*0.70) then
+-- 		select "20% Bonus" as bonus_Percentage;
+-- 	elseif empSalary > (MaxSalary*0.20) and empSalary <= (MaxSalary*0.50) then
+-- 		select "30% Bonus" as bonus_Percentage;
+-- 	elseif empSalary <= (MaxSalary*0.20) then
+-- 		select "40% Bonus" as bonus_Percentage;
+-- 	end if;
+-- end $$
+-- delimiter ;
+
+-- call bonus_percentage(10);
+
+-- Task 5
+-- delimiter $$
+-- create procedure bonus_percentage_ALL()
+-- begin
+-- declare empSalary int(100) default 0;
+-- declare empName TEXT default '';
+-- declare MaxSalary int(100) default (select max(salary) from employee);
+-- declare i int(100) default 0;
+-- create temporary table result(Employee_Name Text,bonus_Percentage TEXT);
+-- 	repeat
+-- 		set empName = (select concat(first_name," ",last_name) from employee limit i,1);
+--         set empSalary = (select salary from employee limit i,1);
+--         if empSalary > (MaxSalary*0.60) then
+-- 			insert into result(Employee_Name,bonus_Percentage) values(empName,"10% Bonus");
+-- 		elseif empSalary > (MaxSalary*0.40) and empSalary <=(MaxSalary*0.70) then
+-- 			insert into result(Employee_Name,bonus_Percentage) values(empName,"20% Bonus");
+-- 		elseif empSalary > (MaxSalary*0.20) and empSalary <=(MaxSalary*0.50) then
+-- 			insert into result(Employee_Name,bonus_Percentage) values(empName,"30% Bonus");
+-- 		elseif empSalary <= (MaxSalary*0.20) then
+-- 			insert into result(Employee_Name,bonus_Percentage) values(empName,"40% Bonus");
+-- 		end if;
+-- 		set i=i+1;
+-- 	until empName is null
+--     end repeat;
+--     select * from result;
+--     truncate result;
+-- end $$
+-- delimiter ;
+
+-- call bonus_percentage_ALL;
